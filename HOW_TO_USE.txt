@@ -1,5 +1,5 @@
 ================================================
-  MCM SCHEDULE APP — HANDOVER & MAINTENANCE GUIDE
+  MCM SCHEDULE APP -- HANDOVER & MAINTENANCE GUIDE
 ================================================
 
 WHAT IS THIS APP?
@@ -9,8 +9,8 @@ It runs in any web browser and uses Firebase to sync
 schedule data in real time across all users.
 
 The app is made up of two key files:
-  - SchedulingApp.html  → The app itself. This is what gets hosted/deployed.
-  - ScheduleApp.jsx     → The source code. Edit this when changes are needed.
+  - SchedulingApp.html  -> The app itself. This is what gets hosted/deployed.
+  - ScheduleApp.jsx     -> The source code. Edit this when changes are needed.
 
 
 ------------------------------------------------
@@ -21,91 +21,133 @@ WHAT HAS BEEN SET UP
    URL: https://github.com/boargumy11/mcmschedule
    - Contains both app files and this guide
    - Used as the central place to store and update the code
-   - Public repo with GitHub Pages enabled (see below)
+   - Public repo with GitHub Pages enabled
 
 2. FIREBASE PROJECT
+   Account: boargumy11@gmail.com
    Project name: MCM Schedule
-   Project ID: mcm-schedule
+   Project ID: mcm-schedule-4d8a6
    - Handles all real-time data (schedules, updates, etc.)
-   - You will need to add your domain to Firebase's authorized
-     domains list so the app works on your website (see below)
+   - No domain restrictions -- works from any domain automatically
 
 
 ------------------------------------------------
-ACCESS GIVEN TO MANAGER
+ACCESS
 ------------------------------------------------
 
-- GitHub: Invited as a Collaborator on the mcmschedule repo
-  (check your email for the GitHub invitation and accept it)
+- GitHub: Both the original creator and manager are Collaborators
+  on the mcmschedule repo. Either can make updates.
 
-- Firebase: To be added as Owner of the MCM Schedule project
-  Go to: Firebase Console → MCM Schedule → Project Settings
-         → Users and Permissions → Add Member
-  Add her email and set role to: Owner
-
-- IMPORTANT — Add your domain to Firebase:
-  Go to: Firebase Console → MCM Schedule → Authentication
-         → Settings → Authorized Domains → Add Domain
-  At minimum, add the GitHub Pages domain:
-    boargumy11.github.io
-  If the app is also hosted on a custom domain, add that too.
-  Without this step, the app will load but Firebase won't connect.
+- Firebase: Manager has been added as Owner of the MCM Schedule
+  project (mcm-schedule-4d8a6) under boargumy11@gmail.com.
+  Go to: console.firebase.google.com -> sign in as boargumy11
+         -> MCM Schedule -> Project Settings -> Users and Permissions
 
 
 ------------------------------------------------
 HOW THE APP IS DEPLOYED
 ------------------------------------------------
 
-GitHub Pages is already set up and live at:
+GitHub Pages is live at:
   https://boargumy11.github.io/mcmschedule/
 
   - Hosted for free via GitHub Pages
-  - Deploys automatically from the main branch
-  - HTTPS is enforced (secure by default)
-  - No manual re-deployment needed after uploading to GitHub
+  - Deploys automatically within ~1 minute after any file upload
+  - HTTPS enforced (secure by default)
+  - No manual re-deployment needed
 
-Optional: Host on a custom domain instead
+Optional: Host on a custom domain
   If the company domain is preferred over the GitHub Pages URL:
-  1. Take the file: SchedulingApp.html
+  1. Take the file SchedulingApp.html
   2. Upload it to your web server (via cPanel, FTP, etc.)
   3. Access it at yoursite.com/SchedulingApp.html
      (or rename it to index.html if you want it as the homepage)
-  4. Remember to add that domain to Firebase authorized domains (see above)
+  No additional Firebase configuration is needed.
 
 
 ------------------------------------------------
-HOW TO MAINTAIN THE APP (Monthly Updates)
+HOW TO UPDATE THE APP (e.g. Monthly Schedule)
 ------------------------------------------------
 
-When you need to update the schedule (e.g. add a new month):
+PREVIOUS METHOD (Netlify -- no longer used):
+  Only the original creator could update it. Required logging into
+  Netlify and manually re-uploading the file each time.
 
-STEP 1 — Open Claude (claude.ai) and upload ScheduleApp.jsx
-  Tell Claude what you need, for example:
-  "Add a blank schedule for the month of [Month Year]"
-  or
-  "Update the schedule for [employee name] in [month]"
+CURRENT METHOD (GitHub Pages):
+  Both the original creator and the manager can update the app.
 
-STEP 2 — Claude will give you an updated file
-  Download or copy the updated SchedulingApp.html that Claude produces.
+  STEP 1 -- Open Claude (claude.ai) and upload ScheduleApp.jsx
+    Tell Claude what you need, for example:
+    "Add a blank schedule for the month of [Month Year]"
 
-STEP 3 — Upload the new file to GitHub
-  1. Go to https://github.com/boargumy11/mcmschedule
-  2. Click on SchedulingApp.html in the file list
-  3. Click the pencil (edit) icon, OR click the three-dot menu → Upload file
-  4. Upload the new SchedulingApp.html to replace the old one
-  5. Click "Commit changes"
+  STEP 2 -- Claude will give you an updated SchedulingApp.html
+    Save this file to your computer.
 
-STEP 4 — Re-deploy (if using a custom domain)
-  - If using GitHub Pages: it updates automatically after Step 3
-  - If also hosting on your own website: re-upload the new HTML file to your server
+  STEP 3 -- Upload the new file to GitHub
+    1. Go to https://github.com/boargumy11/mcmschedule
+    2. Click on SchedulingApp.html in the file list
+    3. Click the pencil icon -> then the three-dot menu -> Upload file
+    4. Upload the new SchedulingApp.html to replace the old one
+    5. Click "Commit changes"
+
+  STEP 4 -- Done. GitHub Pages auto-deploys within ~1 minute.
+    Visit https://boargumy11.github.io/mcmschedule/ to confirm.
+
+
+------------------------------------------------
+EMERGENCY MEASURES (If the App Stops Working)
+------------------------------------------------
+
+If the app loads but data is not syncing or saving, check Firebase first:
+
+  CHECK 1 -- Firebase rules not expired
+    Go to: console.firebase.google.com -> sign in as boargumy11
+    -> MCM Schedule -> Realtime Database -> Rules
+    Both ".read" and ".write" should be set to: true
+    If they show a timestamp or "false", the rules need to be
+    updated back to true and republished.
+
+  CHECK 2 -- Firebase project is active (not deleted or suspended)
+    Go to: console.firebase.google.com -> sign in as boargumy11
+    The "MCM Schedule" project should appear in the project list.
+    If it is missing, the project may have been deleted -- contact
+    the original creator to restore or recreate it.
+
+  CHECK 3 -- Firebase usage limits not exceeded (free tier)
+    Go to: console.firebase.google.com -> MCM Schedule
+    -> Realtime Database -> Usage
+    On the free Spark plan, the database allows 1 GB storage and
+    10 GB/month download. If limits are hit, data will stop syncing
+    until the next billing cycle or the plan is upgraded.
+
+If the app itself does not load at all, check GitHub next:
+
+  CHECK 4 -- GitHub Pages is still enabled
+    Go to: github.com/boargumy11/mcmschedule -> Settings -> Pages
+    It should show "Your site is live at https://boargumy11.github.io/mcmschedule/"
+    If it is turned off, set Source back to: Deploy from branch -> main -> / (root)
+
+  CHECK 5 -- The latest file upload went through correctly
+    Go to: github.com/boargumy11/mcmschedule
+    Click on SchedulingApp.html and check the "Last committed" timestamp.
+    If it does not reflect the latest update, the upload may not have
+    completed -- try uploading again.
+
+  CHECK 6 -- GitHub Pages deployment did not fail
+    Go to: github.com/boargumy11/mcmschedule -> Actions tab
+    The most recent workflow run should show a green checkmark.
+    If it shows a red X, the deployment failed -- try committing
+    the file again to trigger a fresh deployment.
 
 
 ------------------------------------------------
 QUICK CONTACTS / REFERENCES
 ------------------------------------------------
 
-GitHub repo:     https://github.com/boargumy11/mcmschedule
+Live app:         https://boargumy11.github.io/mcmschedule/
+GitHub repo:      https://github.com/boargumy11/mcmschedule
 Firebase console: https://console.firebase.google.com
+Firebase account: boargumy11@gmail.com
 Original creator: boargumy11@gmail.com
 
 ================================================
