@@ -1,0 +1,111 @@
+================================================
+  MCM SCHEDULE APP — HANDOVER & MAINTENANCE GUIDE
+================================================
+
+WHAT IS THIS APP?
+-----------------
+This is the MCM Markets CS team scheduling app.
+It runs in any web browser and uses Firebase to sync
+schedule data in real time across all users.
+
+The app is made up of two key files:
+  - SchedulingApp.html  → The app itself. This is what gets hosted/deployed.
+  - ScheduleApp.jsx     → The source code. Edit this when changes are needed.
+
+
+------------------------------------------------
+WHAT HAS BEEN SET UP
+------------------------------------------------
+
+1. GITHUB REPOSITORY (public)
+   URL: https://github.com/boargumy11/mcmschedule
+   - Contains both app files and this guide
+   - Used as the central place to store and update the code
+   - Public repo with GitHub Pages enabled (see below)
+
+2. FIREBASE PROJECT
+   Project name: MCM Schedule
+   Project ID: mcm-schedule
+   - Handles all real-time data (schedules, updates, etc.)
+   - You will need to add your domain to Firebase's authorized
+     domains list so the app works on your website (see below)
+
+
+------------------------------------------------
+ACCESS GIVEN TO MANAGER
+------------------------------------------------
+
+- GitHub: Invited as a Collaborator on the mcmschedule repo
+  (check your email for the GitHub invitation and accept it)
+
+- Firebase: To be added as Owner of the MCM Schedule project
+  Go to: Firebase Console → MCM Schedule → Project Settings
+         → Users and Permissions → Add Member
+  Add her email and set role to: Owner
+
+- IMPORTANT — Add your domain to Firebase:
+  Go to: Firebase Console → MCM Schedule → Authentication
+         → Settings → Authorized Domains → Add Domain
+  At minimum, add the GitHub Pages domain:
+    boargumy11.github.io
+  If the app is also hosted on a custom domain, add that too.
+  Without this step, the app will load but Firebase won't connect.
+
+
+------------------------------------------------
+HOW THE APP IS DEPLOYED
+------------------------------------------------
+
+GitHub Pages is already set up and live at:
+  https://boargumy11.github.io/mcmschedule/
+
+  - Hosted for free via GitHub Pages
+  - Deploys automatically from the main branch
+  - HTTPS is enforced (secure by default)
+  - No manual re-deployment needed after uploading to GitHub
+
+Optional: Host on a custom domain instead
+  If the company domain is preferred over the GitHub Pages URL:
+  1. Take the file: SchedulingApp.html
+  2. Upload it to your web server (via cPanel, FTP, etc.)
+  3. Access it at yoursite.com/SchedulingApp.html
+     (or rename it to index.html if you want it as the homepage)
+  4. Remember to add that domain to Firebase authorized domains (see above)
+
+
+------------------------------------------------
+HOW TO MAINTAIN THE APP (Monthly Updates)
+------------------------------------------------
+
+When you need to update the schedule (e.g. add a new month):
+
+STEP 1 — Open Claude (claude.ai) and upload ScheduleApp.jsx
+  Tell Claude what you need, for example:
+  "Add a blank schedule for the month of [Month Year]"
+  or
+  "Update the schedule for [employee name] in [month]"
+
+STEP 2 — Claude will give you an updated file
+  Download or copy the updated SchedulingApp.html that Claude produces.
+
+STEP 3 — Upload the new file to GitHub
+  1. Go to https://github.com/boargumy11/mcmschedule
+  2. Click on SchedulingApp.html in the file list
+  3. Click the pencil (edit) icon, OR click the three-dot menu → Upload file
+  4. Upload the new SchedulingApp.html to replace the old one
+  5. Click "Commit changes"
+
+STEP 4 — Re-deploy (if using a custom domain)
+  - If using GitHub Pages: it updates automatically after Step 3
+  - If also hosting on your own website: re-upload the new HTML file to your server
+
+
+------------------------------------------------
+QUICK CONTACTS / REFERENCES
+------------------------------------------------
+
+GitHub repo:     https://github.com/boargumy11/mcmschedule
+Firebase console: https://console.firebase.google.com
+Original creator: boargumy11@gmail.com
+
+================================================
